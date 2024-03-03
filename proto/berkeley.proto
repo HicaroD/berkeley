@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package berkeley;
+
+message Empty {}
+
+message TimeResponse {
+    int64 time = 1;
+}
+
+service TimeSync {
+    rpc GetTime(Empty) returns (TimeResponse) {}
+}
