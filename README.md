@@ -1,20 +1,25 @@
 # Berkeley
 
-## Requirements
+## Dupla
 
-Build a virtual environment:
+1. Hícaro Dânrlley - 21110431
+2. Wemilly Maria - 21110434
+
+## Requisitos
+
+Gere um ambiente virtual e execute-o:
 
 ```bash
-python -m venv .env
+python -m venv .env && source .env/bin/activate
 ```
 
-Install all the required packages:
+Instale todos os pacotes necessários:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## Uso
 
 ```bash
 python server.py
@@ -24,6 +29,6 @@ python server.py
 python client.py
 ```
 
-## License
+## Licença
 
-This project is licensed under the MIT license. See [LICENSE](LICENSE).
+[LICENSE](LICENSE)
