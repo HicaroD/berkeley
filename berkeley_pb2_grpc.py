@@ -19,6 +19,11 @@ class TimeSyncStub(object):
                 request_serializer=berkeley__pb2.Empty.SerializeToString,
                 response_deserializer=berkeley__pb2.TimeResponse.FromString,
                 )
+        self.SendTimeToMaster = channel.unary_unary(
+                '/berkeley.TimeSync/SendTimeToMaster',
+                request_serializer=berkeley__pb2.TimeRequest.SerializeToString,
+                response_deserializer=berkeley__pb2.TimeResponse.FromString,
+                )
 
 
 class TimeSyncServicer(object):
@@ -30,12 +35,23 @@ class TimeSyncServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SendTimeToMaster(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TimeSyncServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetTime': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTime,
                     request_deserializer=berkeley__pb2.Empty.FromString,
+                    response_serializer=berkeley__pb2.TimeResponse.SerializeToString,
+            ),
+            'SendTimeToMaster': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendTimeToMaster,
+                    request_deserializer=berkeley__pb2.TimeRequest.FromString,
                     response_serializer=berkeley__pb2.TimeResponse.SerializeToString,
             ),
     }
@@ -61,6 +77,23 @@ class TimeSync(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/berkeley.TimeSync/GetTime',
             berkeley__pb2.Empty.SerializeToString,
+            berkeley__pb2.TimeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SendTimeToMaster(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/berkeley.TimeSync/SendTimeToMaster',
+            berkeley__pb2.TimeRequest.SerializeToString,
             berkeley__pb2.TimeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

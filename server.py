@@ -6,9 +6,22 @@ import berkeley_pb2
 
 
 class TimeSyncServicer(berkeley_pb2_grpc.TimeSyncServicer):
+    def __init__(self) -> None:
+        super().__init__()
+        # Dictionary that maps client's port and its time
+        self.clients = {}
+
     def GetTime(self, request, context):
-        current_server_time_in_ms = int(time.time() * 1000)
+        current_server_time_in_ms = time.time() * 1000
         return berkeley_pb2.TimeResponse(time=current_server_time_in_ms)
+
+    def SendTimeToMaster(self, request, context):
+        self.clients[request.port] = request.time
+        average_time = sum(self.clients.values()) / len(self.clients)
+        # result represents how much we need to adjust the client time based on
+        # average of time
+        result = average_time - self.clients[request.port]
+        return berkeley_pb2.TimeResponse(time=result)
 
 
 def serve():

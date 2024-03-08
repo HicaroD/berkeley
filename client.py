@@ -1,13 +1,16 @@
+import sys
 from berkeley import BerkeleyAlgorithm
 
 
-def main():
+def main(port: int):
     server_address = "localhost:50051"
-    berkeley_algorithm = BerkeleyAlgorithm()
-    delta = berkeley_algorithm.get_adjusted_clock(server_address)
-    berkeley_algorithm.adjust_client_clock_based_on_server_time(delta)
-    print("Clock synchronized successfully!")
+    berkeley_algorithm = BerkeleyAlgorithm(port)
+    berkeley_algorithm.adjust_client_clock(server_address)
 
 
 if __name__ == "__main__":
-    main()
+    port = sys.argv[1]
+    if port is None:
+        print("No port was defined.\nEx.: python client.py xxxx")
+        exit(1)
+    main(int(port))

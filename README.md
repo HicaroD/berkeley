@@ -26,7 +26,7 @@ python server.py
 ```
 
 ```bash
-python client.py
+python client.py 5003 # Último valor representa o número da porta do cliente
 ```
 
 ## Licença

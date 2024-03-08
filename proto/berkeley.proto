@@ -4,10 +4,16 @@ package berkeley;
 
 message Empty {}
 
+message TimeRequest {
+  int64 port = 1;
+  float time = 2;
+}
+
 message TimeResponse {
-    int64 time = 1;
+  float time = 1;
 }
 
 service TimeSync {
-    rpc GetTime(Empty) returns (TimeResponse) {}
+  rpc GetTime(Empty) returns (TimeResponse) {}
+  rpc SendTimeToMaster(TimeRequest) returns (TimeResponse) {}
 }

@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x62\x65rkeley.proto\x12\x08\x62\x65rkeley\"\x07\n\x05\x45mpty\"\x1c\n\x0cTimeResponse\x12\x0c\n\x04time\x18\x01 \x01(\x03\x32@\n\x08TimeSync\x12\x34\n\x07GetTime\x12\x0f.berkeley.Empty\x1a\x16.berkeley.TimeResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x62\x65rkeley.proto\x12\x08\x62\x65rkeley\"\x07\n\x05\x45mpty\")\n\x0bTimeRequest\x12\x0c\n\x04port\x18\x01 \x01(\x03\x12\x0c\n\x04time\x18\x02 \x01(\x02\"\x1c\n\x0cTimeResponse\x12\x0c\n\x04time\x18\x01 \x01(\x02\x32\x85\x01\n\x08TimeSync\x12\x34\n\x07GetTime\x12\x0f.berkeley.Empty\x1a\x16.berkeley.TimeResponse\"\x00\x12\x43\n\x10SendTimeToMaster\x12\x15.berkeley.TimeRequest\x1a\x16.berkeley.TimeResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -23,8 +23,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_EMPTY']._serialized_start=28
   _globals['_EMPTY']._serialized_end=35
-  _globals['_TIMERESPONSE']._serialized_start=37
-  _globals['_TIMERESPONSE']._serialized_end=65
-  _globals['_TIMESYNC']._serialized_start=67
-  _globals['_TIMESYNC']._serialized_end=131
+  _globals['_TIMEREQUEST']._serialized_start=37
+  _globals['_TIMEREQUEST']._serialized_end=78
+  _globals['_TIMERESPONSE']._serialized_start=80
+  _globals['_TIMERESPONSE']._serialized_end=108
+  _globals['_TIMESYNC']._serialized_start=111
+  _globals['_TIMESYNC']._serialized_end=244
 # @@protoc_insertion_point(module_scope)
