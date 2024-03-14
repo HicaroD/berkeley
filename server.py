@@ -8,7 +8,6 @@ import berkeley_pb2
 class TimeSyncServicer(berkeley_pb2_grpc.TimeSyncServicer):
     def __init__(self) -> None:
         super().__init__()
-        # Dictionary that maps client's port and its time
         self.clients = {}
 
     def GetTime(self, request, context):
