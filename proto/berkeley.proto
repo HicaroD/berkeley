@@ -14,6 +14,5 @@ message TimeResponse {
 }
 
 service TimeSync {
-  rpc GetTime(Empty) returns (TimeResponse) {}
   rpc SendTimeToMaster(TimeRequest) returns (TimeResponse) {}
 }

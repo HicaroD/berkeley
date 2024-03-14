@@ -14,11 +14,6 @@ class TimeSyncStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetTime = channel.unary_unary(
-                '/berkeley.TimeSync/GetTime',
-                request_serializer=berkeley__pb2.Empty.SerializeToString,
-                response_deserializer=berkeley__pb2.TimeResponse.FromString,
-                )
         self.SendTimeToMaster = channel.unary_unary(
                 '/berkeley.TimeSync/SendTimeToMaster',
                 request_serializer=berkeley__pb2.TimeRequest.SerializeToString,
@@ -29,12 +24,6 @@ class TimeSyncStub(object):
 class TimeSyncServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GetTime(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SendTimeToMaster(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -44,11 +33,6 @@ class TimeSyncServicer(object):
 
 def add_TimeSyncServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetTime': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetTime,
-                    request_deserializer=berkeley__pb2.Empty.FromString,
-                    response_serializer=berkeley__pb2.TimeResponse.SerializeToString,
-            ),
             'SendTimeToMaster': grpc.unary_unary_rpc_method_handler(
                     servicer.SendTimeToMaster,
                     request_deserializer=berkeley__pb2.TimeRequest.FromString,
@@ -63,23 +47,6 @@ def add_TimeSyncServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class TimeSync(object):
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def GetTime(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/berkeley.TimeSync/GetTime',
-            berkeley__pb2.Empty.SerializeToString,
-            berkeley__pb2.TimeResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SendTimeToMaster(request,

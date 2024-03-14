@@ -3,9 +3,10 @@ from berkeley import BerkeleyAlgorithm
 
 
 def main(port: int):
+    # Inicia a conexão com o servidor
     server_address = "localhost:50051"
     berkeley_algorithm = BerkeleyAlgorithm(port)
-    berkeley_algorithm.adjust_client_clock(server_address)
+    berkeley_algorithm.start(server_address)
 
 
 if __name__ == "__main__":
